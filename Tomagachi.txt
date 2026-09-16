@@ -1,0 +1,24 @@
+Tomagachi
+
+pet actions
+	- sleep
+	- play 
+	- study
+	- showoff
+	- FEED ME
+	- run
+
+Matinenance
+	- feeding
+
+Task Reward
+	- studying
+	- homework
+	- Test score
+	- work out
+	- Social
+
+Diffrent growth lines
+
+at most 5 stages
+
