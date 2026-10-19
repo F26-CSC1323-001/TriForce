@@ -22,6 +22,12 @@ up = 0
 down = 0
 left = 0
 right = 0
+Action1 = 0
+Action2 = 0
+Action3 = 0
+Action4 = 0
+Action5 = 0
+Action6 = 0
 
 while running:
     # poll for events
@@ -48,7 +54,12 @@ while running:
 
         if UsingControler:
             if event.type == pygame.JOYBUTTONDOWN:        
-                buttonList[event.button] = True
+                if event.button != 7:
+                    buttonList[event.button+1] = True
+                elif event.button > 7:
+                    buttonList[event.button] = True
+                else:
+                    buttonList[0] = True
 
             if event.type == pygame.JOYAXISMOTION:
                 joystick = joysticks[event.instance_id]
@@ -115,7 +126,12 @@ while running:
 
 
             if event.type == pygame.JOYBUTTONUP:
-                buttonList[event.button] = False
+                if event.button < 7:
+                    buttonList[event.button+1] = False
+                elif event.button > 7:
+                    buttonList[event.button] = False
+                else:
+                    buttonList[0] = False
     
 
     # fill the screen with a color to wipe away anything from last frame
@@ -132,6 +148,11 @@ while running:
             left = 0
             right = 0
             Action1 = 0
+            Action2 = 0
+            Action3 = 0
+            Action4 = 0
+            Action5 = 0
+            Action6 = 0
             Control_Setup_Timer = 0
 
         if up == 0 and Control_Setup_Timer > 60:
@@ -148,21 +169,61 @@ while running:
                     down = i
                     Control_Setup_Timer = 0
 
-        if left == 0 and Control_Setup_Timer > 60 and up != 0 and down != 0:
+        if left == 0 and Control_Setup_Timer > 60 and down != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
                 if keys[i]:
                     left = i
                     Control_Setup_Timer = 0
 
-        if right == 0 and Control_Setup_Timer > 60 and up != 0 and down != 0 and left != 0:
+        if right == 0 and Control_Setup_Timer > 60 and left != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
                 if keys[i]:
                     right = i
                     Control_Setup_Timer = 0
 
-        #
+        if Action1 == 0 and Control_Setup_Timer > 60 and right != 0:
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action1 = i
+                    Control_Setup_Timer = 0
+
+        if Action2 == 0 and Control_Setup_Timer > 60 and Action1 != 0: 
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action2 = i
+                    Control_Setup_Timer = 0
+
+        if Action3 == 0 and Control_Setup_Timer > 60 and Action2 != 0:
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action3 = i
+                    Control_Setup_Timer = 0
+
+        if Action4 == 0 and Control_Setup_Timer > 60 and Action3 != 0: 
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action4 = i
+                    Control_Setup_Timer = 0
+
+        if Action5 == 0 and Control_Setup_Timer > 60 and Action4 != 0:
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action5 = i
+                    Control_Setup_Timer = 0
+
+        if Action6 == 0 and Control_Setup_Timer > 60 and Action5 != 0: 
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    Action6 = i
+                    Control_Setup_Timer = 0
         
         if keys[up] and up != 0:
             player_pos.y -= 300 * dt
@@ -177,13 +238,18 @@ while running:
         pygame.display.flip()
 
     if UsingControler:
-        keys = pygame.key.get_pressed()
 
-        if buttonList[7]:
-            up = 30
-            down = 30
-            left = 30
-            right = 30
+        if buttonList[0]:
+            up = 0
+            down = 0
+            left = 0
+            right = 0
+            Action1 = 0
+            Action2 = 0
+            Action3 = 0
+            Action4 = 0
+            Action5 = 0
+            Action6 = 0
             Control_Setup_Timer = 0
 
         if up == 0 and Control_Setup_Timer > 60:
@@ -198,16 +264,52 @@ while running:
                     down = i
                     Control_Setup_Timer = 0
 
-        if left == 0 and Control_Setup_Timer > 60 and up != 0 and down != 0:
+        if left == 0 and Control_Setup_Timer > 60 and down != 0:
             for i in range(len(buttonList)):
                 if buttonList[i]:
                     left = i
                     Control_Setup_Timer = 0
 
-        if right == 0 and Control_Setup_Timer > 60 and up != 0 and down != 0 and left != 0:
+        if right == 0 and Control_Setup_Timer > 60 and left != 0:
             for i in range(len(buttonList)):
                 if buttonList[i]:
                     right = i
+                    Control_Setup_Timer = 0
+
+        if Action1 == 0 and Control_Setup_Timer > 60 and right != 0:
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action1 = i
+                    Control_Setup_Timer = 0
+
+        if Action2 == 0 and Control_Setup_Timer > 60 and Action1 != 0: 
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action2 = i
+                    Control_Setup_Timer = 0
+
+        if Action3 == 0 and Control_Setup_Timer > 60 and Action2 != 0:
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action3 = i
+                    Control_Setup_Timer = 0
+
+        if Action4 == 0 and Control_Setup_Timer > 60 and Action3 != 0: 
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action4 = i
+                    Control_Setup_Timer = 0
+
+        if Action5 == 0 and Control_Setup_Timer > 60 and Action4 != 0:
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action5 = i
+                    Control_Setup_Timer = 0
+
+        if Action6 == 0 and Control_Setup_Timer > 60 and Action5 != 0:
+            for i in range(len(buttonList)):
+                if buttonList[i]:
+                    Action6 = i
                     Control_Setup_Timer = 0
         
         if buttonList[up] and up != 0:
