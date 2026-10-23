@@ -161,6 +161,7 @@ while running:
                 if keys[i]:
                     up = i
                     Control_Setup_Timer = 0
+            
 
         if down == 0 and Control_Setup_Timer > 60 and up != 0:
             keys = pygame.key.get_pressed()
