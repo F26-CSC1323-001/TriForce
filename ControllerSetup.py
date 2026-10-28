@@ -1,6 +1,7 @@
 # Example file showing a circle moving on screen
 import pygame
-
+import ReaderDefiner
+from random import randint
 # pygame setup
 pygame.init()
 pygame.joystick.init
@@ -9,6 +10,8 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+
+Reader = ReaderDefiner.inputReader(0,60,60,60,60,60)
 
 ControlScheme = False
 UsingKeyboard = False
@@ -29,9 +32,10 @@ Action4 = 0
 Action5 = 0
 Action6 = 0
 
+controls =[False for n in range(10)]
+
 while running:
     # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -132,15 +136,11 @@ while running:
                     buttonList[event.button] = False
                 else:
                     buttonList[0] = False
-    
-
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
-
-    pygame.draw.circle(screen, "red", player_pos, 40)
 
     if UsingKeyboard == True:
         keys = pygame.key.get_pressed()
+
+        #This resets the controls if the escape key is pressed
 
         if keys[pygame.K_ESCAPE]:
             up = 0
@@ -155,90 +155,89 @@ while running:
             Action6 = 0
             Control_Setup_Timer = 0
 
+        #This series of if statements set up the contols
+
         if up == 0 and Control_Setup_Timer > 60:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     up = i
                     Control_Setup_Timer = 0
-            
-
+        
         if down == 0 and Control_Setup_Timer > 60 and up != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     down = i
                     Control_Setup_Timer = 0
-
+        
         if left == 0 and Control_Setup_Timer > 60 and down != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     left = i
                     Control_Setup_Timer = 0
-
+        
         if right == 0 and Control_Setup_Timer > 60 and left != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     right = i
                     Control_Setup_Timer = 0
-
+        
         if Action1 == 0 and Control_Setup_Timer > 60 and right != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action1 = i
                     Control_Setup_Timer = 0
-
+        
         if Action2 == 0 and Control_Setup_Timer > 60 and Action1 != 0: 
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action2 = i
                     Control_Setup_Timer = 0
 
         if Action3 == 0 and Control_Setup_Timer > 60 and Action2 != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action3 = i
                     Control_Setup_Timer = 0
-
+        
         if Action4 == 0 and Control_Setup_Timer > 60 and Action3 != 0: 
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action4 = i
                     Control_Setup_Timer = 0
-
+        
         if Action5 == 0 and Control_Setup_Timer > 60 and Action4 != 0:
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action5 = i
                     Control_Setup_Timer = 0
+
+        #Sets Controls List
 
         if Action6 == 0 and Control_Setup_Timer > 60 and Action5 != 0: 
             keys = pygame.key.get_pressed()
             for i in range(len(keys)):
-                if keys[i]:
+                if keys[i] and i != pygame.K_ESCAPE:
                     Action6 = i
                     Control_Setup_Timer = 0
-        
-        if keys[up] and up != 0:
-            player_pos.y -= 300 * dt
-        if keys[down] and up != 0:
-            player_pos.y += 300 * dt
-        if keys[left] and up != 0:
-            player_pos.x -= 300 * dt
-        if keys[right] and up != 0:
-            player_pos.x += 300 * dt
+
+        if Action6 != 0:
+            controls = [keys[up], keys[down], keys[left], keys[right], keys[Action1], keys[Action2], keys[Action3], keys[Action4], keys[Action5], keys[Action6]]
 
         # flip() the display to put your work on screen
         pygame.display.flip()
 
     if UsingControler:
+
+        #This resets the controls if the start button is clicked        
 
         if buttonList[0]:
             up = 0
@@ -253,78 +252,100 @@ while running:
             Action6 = 0
             Control_Setup_Timer = 0
 
+        #This series of if statements set up the controls
+
         if up == 0 and Control_Setup_Timer > 60:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     up = i
                     Control_Setup_Timer = 0
 
         if down == 0 and Control_Setup_Timer > 60 and up != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     down = i
                     Control_Setup_Timer = 0
 
         if left == 0 and Control_Setup_Timer > 60 and down != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     left = i
                     Control_Setup_Timer = 0
 
         if right == 0 and Control_Setup_Timer > 60 and left != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     right = i
                     Control_Setup_Timer = 0
 
         if Action1 == 0 and Control_Setup_Timer > 60 and right != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action1 = i
                     Control_Setup_Timer = 0
 
         if Action2 == 0 and Control_Setup_Timer > 60 and Action1 != 0: 
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action2 = i
                     Control_Setup_Timer = 0
 
         if Action3 == 0 and Control_Setup_Timer > 60 and Action2 != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action3 = i
                     Control_Setup_Timer = 0
 
         if Action4 == 0 and Control_Setup_Timer > 60 and Action3 != 0: 
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action4 = i
                     Control_Setup_Timer = 0
 
         if Action5 == 0 and Control_Setup_Timer > 60 and Action4 != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action5 = i
                     Control_Setup_Timer = 0
 
         if Action6 == 0 and Control_Setup_Timer > 60 and Action5 != 0:
             for i in range(len(buttonList)):
-                if buttonList[i]:
+                if buttonList[i] and i != 0:
                     Action6 = i
                     Control_Setup_Timer = 0
-        
-        if buttonList[up] and up != 0:
-            player_pos.y -= 300 * dt
-        if buttonList[down] and up != 0:
-            player_pos.y += 300 * dt
-        if buttonList[left] and up != 0:
-            player_pos.x -= 300 * dt
-        if buttonList[right] and up != 0:
             player_pos.x += 300 * dt
 
+        #Sets Controls List
+
+        if Action6 != 0:
+            controls = [buttonList[up], buttonList[down], buttonList[left], buttonList[right], buttonList[Action1], buttonList[Action2], buttonList[Action3], buttonList[Action4], buttonList[Action5], buttonList[Action6]]
+        
         # flip() the display to put your work on screen
         pygame.display.flip()
 
+
+    #controls is a list of boolean values that correspond to the controls in this order: up, down, left, right, Action1, Action2, Action3, Action4, Action5, Action6
+    
+    #Reader is our input reader, any check functions will use it
+
+    #all of the check funcitons have three return values, the first value is either the progress on the input (for input checks like fQCCheck) or the block type (for defenseCheck), the second is the timer, and the third is the check value (0 = incomplete, 1 = success, 2 = failure)
+
+    #below is an example line for an input check function
+    # sequence, timer, checkValue = Reader.fQCCheck(controls[0], controls[1], controls[2], controls[3], controls[4], sequence, timer)
+    # the fifth parameter can be any of the action buttons, and should be set by the user
+    # it is integral that both sequences and timers are the same variable
+
+    #Main
+
+    
+
+
+
+
+    ###
+
+
+    #You should put all frame counter here (if you have any)
     Control_Setup_Timer += 1
 
     # limits FPS to 60
