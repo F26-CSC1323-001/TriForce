@@ -639,10 +639,14 @@ class DefenseGame:
                     self.react = self.t
                 elif self.t > self.cfg["react"]:
                     self.finish(False, "TOO SLOW / WRONG", BAD_COL)
+                elif pad.dir == self.cue["dir"]:
+                    self.react == 99999
             #elif not ok:
             #    self.finish(False, "LET GO TOO EARLY", BAD_COL)
-            elif self.t >= self.cfg["hold"]:
+            elif self.t >= self.cfg["hold"] and pad.dir == self.cue["dir"]:
                 self.finish(True, f"{int(self.react * 1000)} ms, {int(self.react *1000 // 16.66666 + 1)} frames", GOOD_COL)
+            elif pad.dir != self.cue["dir"]:
+                self.react = None
         else:
             self.timer -= dt
             if self.timer <= 0:
