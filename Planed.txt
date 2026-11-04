@@ -1,0 +1,16 @@
+input reader
+	- SF6
+	- GGST
+	- Tekken?
+	- Customizable
+
+Scenario setup
+	- Fuzzy
+	- High Low reaction
+	- Cross up reaction
+	- multiple mix reaction
+	- motion input practice
+	- link practice
+	- combo practice
+	- option select
+	- custom 
