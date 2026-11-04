@@ -230,7 +230,8 @@ while running:
                     Control_Setup_Timer = 0
 
         if Action6 != 0:
-            controls = [keys[up], keys[down], keys[left], keys[right], keys[Action1], keys[Action2], keys[Action3], keys[Action4], keys[Action5], keys[Action6]]
+            MOVEMENT_KEYS = [keys[up], keys[down], keys[left], keys[right]]
+            BTN_KEYS = [keys[Action1], keys[Action2], keys[Action3], keys[Action4], keys[Action5], keys[Action6]]
 
         # flip() the display to put your work on screen
         pygame.display.flip()
@@ -318,7 +319,8 @@ while running:
         #Sets Controls List
 
         if Action6 != 0:
-            controls = [buttonList[up], buttonList[down], buttonList[left], buttonList[right], buttonList[Action1], buttonList[Action2], buttonList[Action3], buttonList[Action4], buttonList[Action5], buttonList[Action6]]
+            MOVEMENT_KEYS = [buttonList[up], buttonList[down], buttonList[left], buttonList[right]]
+            BTN_KEYS = [buttonList[Action1], buttonList[Action2], buttonList[Action3], buttonList[Action4], buttonList[Action5], buttonList[Action6]]
         
         # flip() the display to put your work on screen
         pygame.display.flip()

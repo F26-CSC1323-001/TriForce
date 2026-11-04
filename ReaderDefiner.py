@@ -52,11 +52,11 @@ class inputReader():
 
         #this checks if the player has properly blocked
         if framesSinceStartUp == attack.HitTime:
-            if hitType == 0 and not up and not down and left and not right:
+            if (hitType == 0 or (hitType == 3 and attack.HitTime-attack.AmbiguityTime <= self.TurnAround)) and not up and not down and left and not right:
                 return 1, 0, 1
-            if hitType == 1 and not up and left and not right:
+            if (hitType == 1 or (hitType == 4 and attack.HitTime-attack.AmbiguityTime <= self.TurnAround)) and not up and left and not right:
                 return 1, 0, 1
-            if hitType == 2 and not up and down and left and not right:
+            if (hitType == 2 or (hitType == 5 and attack.HitTime-attack.AmbiguityTime <= self.TurnAround)) and not up and down and left and not right:
                 return 1, 0, 1
             if hitType == 3 and not up and not down and not left and right:
                 return 1, 0, 1
