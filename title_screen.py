@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 #|sprite |
 SPRITE_FILE = os.path.join(HERE, "sprite.png")
-SPRITE_FRAMES = 41      # how many frames from my piskel drawing 
+SPRITE_FRAMES = 41      # how many frames from my(Oliver Hughes) piskel drawing 
 SPRITE_FPS = 7
 SPRITE_HEIGHT = 240     # on-screen height of one frame
 SPRITE_COLS = None      
@@ -18,9 +18,9 @@ SPRITE_AREA = pygame.Rect(W // 2 - 220, 170, 440, 320)   # sprite sits at the bo
 # | titles|
 # name, title PNG, main colour, accent colour
 GAMES = [
-    ("Tekken", "tek8.png", (230, 40, 70), (255, 100, 170)),
-    ("Street Fighter 6", "sf6.png", (255, 120, 40), (255, 205, 80)),
-    ("Guilty Gear Strive", "ggs.png", (255, 60, 140), (255, 165, 60)),
+    ("Tekken", "tek8.png", (230, 40, 70), (255, 100, 170)), # credit -Tekken 8 logo © Bandai Namco Entertainment
+    ("Street Fighter 6", "sf6.png", (255, 120, 40), (255, 205, 80)),# credit-Street Fighter 6 logo © Capcom
+    ("Guilty Gear Strive", "ggs.png", (255, 60, 140), (255, 165, 60)),# Guilty Gear -Strive- logo © Arc System Works
 ]
 CELL_W, CELL_H, CELL_GAP, CELL_Y = 270, 126, 20, 24
 
@@ -53,7 +53,7 @@ TITLE_WHITE_TOLERANCE = 40
 TITLE_WHITE_ONLY_OUTSIDE = False   
                                  
 
-BG_EDGE, BG_CENTER = (4, 5, 9), (14, 17, 28)
+BG_EDGE, BG_CENTER = (20, 22, 34), (45, 52, 80)
 FG, MUTED, LINE = (232, 234, 240), (128, 134, 154), (44, 50, 72)
 CELL_BG = (14, 17, 26)
 DEFAULT_MAIN, DEFAULT_ACC = (90, 140, 255), (150, 190, 255)
